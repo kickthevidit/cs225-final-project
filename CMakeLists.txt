@@ -1,18 +1,30 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(final)
+project(final VERSION 0.1)
 
-# Set Policies
-if(POLICY CMP0048)
-  cmake_policy(SET CMP0048 NEW)
-endif()
+# Specify C++ compiler and linker
+set(CMAKE_C_COMPILER "/usr/bin/clang")
+set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
+set(CMAKE_LINKER "/usr/bin/clang++")
 
-if(POLICY CMP0023)
-  cmake_policy(SET CMP0023 NEW)
-endif()
+# Specify C++ Standard.
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-if(POLICY CMP0079)
-  cmake_policy(SET CMP0079 NEW)
-endif()
+# Specify Debug build.
+set(CMAKE_BUILD_TYPE Debug)
 
-add_subdirectory(src)
+# Specify warnings for all builds.
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function")
+
+# Specify debug symbols and no optimizations for Debug builds.
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG -O0 -gdwarf-4")
+
+set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_CLEAN_FILES)
+
+set(src_dir ${CMAKE_SOURCE_DIR}/src)
+
+add_subdirectory(${src_dir})
+
+add_executable(main ${src_dir}/main.cpp)
+target_link_libraries(main PRIVATE src)

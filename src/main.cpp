@@ -1,5 +1,9 @@
+#include "airport.h"
+
 #include <iostream>
 
 int main() {
-    std::cout << "fuck" << std::endl;
+    Airport airport;
+
+    std::cout << airport.print() << std::endl;
 }

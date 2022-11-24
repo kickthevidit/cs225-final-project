@@ -73,29 +73,29 @@ src/CMakeFiles/src.dir/airport.cpp.o: src/CMakeFiles/src.dir/flags.make
 src/CMakeFiles/src.dir/airport.cpp.o: ../src/airport.cpp
 src/CMakeFiles/src.dir/airport.cpp.o: src/CMakeFiles/src.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/CS225/final-project/cs225-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/src.dir/airport.cpp.o"
-	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/src.dir/airport.cpp.o -MF CMakeFiles/src.dir/airport.cpp.o.d -o CMakeFiles/src.dir/airport.cpp.o -c /workspaces/CS225/final-project/cs225-final-project/src/airport.cpp
+	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/src.dir/airport.cpp.o -MF CMakeFiles/src.dir/airport.cpp.o.d -o CMakeFiles/src.dir/airport.cpp.o -c /workspaces/CS225/final-project/cs225-final-project/src/airport.cpp
 
 src/CMakeFiles/src.dir/airport.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/src.dir/airport.cpp.i"
-	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/CS225/final-project/cs225-final-project/src/airport.cpp > CMakeFiles/src.dir/airport.cpp.i
+	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/CS225/final-project/cs225-final-project/src/airport.cpp > CMakeFiles/src.dir/airport.cpp.i
 
 src/CMakeFiles/src.dir/airport.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/airport.cpp.s"
-	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/CS225/final-project/cs225-final-project/src/airport.cpp -o CMakeFiles/src.dir/airport.cpp.s
+	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/CS225/final-project/cs225-final-project/src/airport.cpp -o CMakeFiles/src.dir/airport.cpp.s
 
 src/CMakeFiles/src.dir/main.cpp.o: src/CMakeFiles/src.dir/flags.make
 src/CMakeFiles/src.dir/main.cpp.o: ../src/main.cpp
 src/CMakeFiles/src.dir/main.cpp.o: src/CMakeFiles/src.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/CS225/final-project/cs225-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/src.dir/main.cpp.o"
-	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/src.dir/main.cpp.o -MF CMakeFiles/src.dir/main.cpp.o.d -o CMakeFiles/src.dir/main.cpp.o -c /workspaces/CS225/final-project/cs225-final-project/src/main.cpp
+	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/src.dir/main.cpp.o -MF CMakeFiles/src.dir/main.cpp.o.d -o CMakeFiles/src.dir/main.cpp.o -c /workspaces/CS225/final-project/cs225-final-project/src/main.cpp
 
 src/CMakeFiles/src.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/src.dir/main.cpp.i"
-	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/CS225/final-project/cs225-final-project/src/main.cpp > CMakeFiles/src.dir/main.cpp.i
+	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/CS225/final-project/cs225-final-project/src/main.cpp > CMakeFiles/src.dir/main.cpp.i
 
 src/CMakeFiles/src.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/main.cpp.s"
-	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/CS225/final-project/cs225-final-project/src/main.cpp -o CMakeFiles/src.dir/main.cpp.s
+	cd /workspaces/CS225/final-project/cs225-final-project/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/CS225/final-project/cs225-final-project/src/main.cpp -o CMakeFiles/src.dir/main.cpp.s
 
 # Object files for target src
 src_OBJECTS = \

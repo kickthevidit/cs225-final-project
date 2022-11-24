@@ -148,19 +148,19 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 CMAKE_PROJECT_NAME:STATIC=final
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION:STATIC=1.2022.12.0
+CMAKE_PROJECT_VERSION:STATIC=0.1
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_MAJOR:STATIC=1
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=0
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_MINOR:STATIC=2022
+CMAKE_PROJECT_VERSION_MINOR:STATIC=1
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_PATCH:STATIC=12
+CMAKE_PROJECT_VERSION_PATCH:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_TWEAK:STATIC=0
+CMAKE_PROJECT_VERSION_TWEAK:STATIC=
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -224,18 +224,6 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//The directory containing a CMake configuration file for Catch2.
-Catch2_DIR:PATH=/usr/lib/cmake/Catch2
-
-//Value Computed by CMake
-FinalProject_BINARY_DIR:STATIC=/workspaces/CS225/final-project/cs225-final-project/build
-
-//Value Computed by CMake
-FinalProject_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-FinalProject_SOURCE_DIR:STATIC=/workspaces/CS225/final-project/cs225-final-project
-
 //Value Computed by CMake
 Project_BINARY_DIR:STATIC=/workspaces/CS225/final-project/cs225-final-project/build
 
@@ -246,18 +234,6 @@ Project_IS_TOP_LEVEL:STATIC=ON
 Project_SOURCE_DIR:STATIC=/workspaces/CS225/final-project/cs225-final-project
 
 //Value Computed by CMake
-Railroad_BINARY_DIR:STATIC=/workspaces/CS225/final-project/cs225-final-project/build
-
-//Value Computed by CMake
-Railroad_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-Railroad_SOURCE_DIR:STATIC=/workspaces/CS225/final-project/cs225-final-project
-
-//Name of the computer/site where compile is being run
-SITE_NAME:STRING=eb9edcfb8207
-
-//Value Computed by CMake
 final_BINARY_DIR:STATIC=/workspaces/CS225/final-project/cs225-final-project/build
 
 //Value Computed by CMake
@@ -265,18 +241,6 @@ final_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 final_SOURCE_DIR:STATIC=/workspaces/CS225/final-project/cs225-final-project
-
-//Value Computed by CMake
-mp_mazes_BINARY_DIR:STATIC=/workspaces/CS225/final-project/cs225-final-project/build
-
-//Value Computed by CMake
-mp_mazes_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-mp_mazes_SOURCE_DIR:STATIC=/workspaces/CS225/final-project/cs225-final-project
-
-//Dependencies for the target
-src_LIB_DEPENDS:STATIC=general;libs;
 
 
 ########################
@@ -426,6 +390,4 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
-//Catch2 full path to CatchAddTests.cmake helper file
-_CATCH_DISCOVER_TESTS_SCRIPT:INTERNAL=/usr/lib/cmake/Catch2/CatchAddTests.cmake
 
