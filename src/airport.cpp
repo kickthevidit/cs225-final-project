@@ -1,8 +1,14 @@
 #include "airport.h"
 
-// #include <iostream>
-#include <string>
+Airport::Airport(int id, std::string name, std::string iata, double latitude, double longitude) : id(id), name(name), 
+                                                                                                  iata(iata), latitude(latitude), 
+                                                                                                  longitude(longitude) {
+                                                                                                                                                                                        
+}
 
-std::string Airport::print() {
-    return name;
+std::ostream& operator<<(std::ostream& os, const Airport& ap) {
+    os << "ID: " << ap.id << '\n' << "Name: " << ap.name << '\n'
+       << "IATA: " << ap.iata << '\n' << "Latitude: " << ap.latitude << '\n'
+       << "Longitude: " << ap.longitude << '\n' << "Num outgoing: " << ap.dest.size();
+    return os;
 }
