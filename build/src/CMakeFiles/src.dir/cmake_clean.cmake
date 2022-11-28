@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/src.dir/airport.cpp.o"
   "CMakeFiles/src.dir/airport.cpp.o.d"
+  "CMakeFiles/src.dir/functions.cpp.o"
+  "CMakeFiles/src.dir/functions.cpp.o.d"
   "CMakeFiles/src.dir/main.cpp.o"
   "CMakeFiles/src.dir/main.cpp.o.d"
   "CMakeFiles/src.dir/utils.cpp.o"

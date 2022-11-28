@@ -1,6 +1,6 @@
 #include "airport.h"
 
-Airport::Airport(int id, std::string name, std::string iata, double latitude, double longitude) : id(id), name(name), 
+Airport::Airport(int adj_idx, int id, std::string name, std::string iata, double latitude, double longitude) : adj_idx(adj_idx), id(id), name(name), 
                                                                                                   iata(iata), latitude(latitude), 
                                                                                                   longitude(longitude) {
                                                                                                                                                                                         

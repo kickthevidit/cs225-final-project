@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspaces/cs225/final_project/cs225-final-project/src/main.cpp" "CMakeFiles/main.dir/src/main.cpp.o" "gcc" "CMakeFiles/main.dir/src/main.cpp.o.d"
+  "/workspaces/cs225/final_project/src/main.cpp" "CMakeFiles/main.dir/src/main.cpp.o" "gcc" "CMakeFiles/main.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/workspaces/cs225/final_project/cs225-final-project/build/src/CMakeFiles/src.dir/DependInfo.cmake"
+  "/workspaces/cs225/final_project/build/src/CMakeFiles/src.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

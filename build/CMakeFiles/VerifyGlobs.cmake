@@ -3,13 +3,14 @@
 cmake_policy(SET CMP0009 NEW)
 
 # src_sources at src/CMakeLists.txt:4 (file)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/cs225/final_project/cs225-final-project/src/*.cpp")
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/cs225/final_project/src/*.cpp")
 set(OLD_GLOB
-  "/workspaces/cs225/final_project/cs225-final-project/src/airport.cpp"
-  "/workspaces/cs225/final_project/cs225-final-project/src/main.cpp"
-  "/workspaces/cs225/final_project/cs225-final-project/src/utils.cpp"
+  "/workspaces/cs225/final_project/src/airport.cpp"
+  "/workspaces/cs225/final_project/src/functions.cpp"
+  "/workspaces/cs225/final_project/src/main.cpp"
+  "/workspaces/cs225/final_project/src/utils.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "/workspaces/cs225/final_project/cs225-final-project/build/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "/workspaces/cs225/final_project/build/CMakeFiles/cmake.verify_globs")
 endif()

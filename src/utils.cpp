@@ -61,7 +61,9 @@ V2D fileToV2D(const std::string& filename){
         for(unsigned j = 0; j < word.size(); j++){
             word[j] = TrimLeft(word[j]);
             word[j] = TrimRight(word[j]);
+            // if (word[j].empty()) word.erase(word.begin() + j);
         }
+        if (word.empty()) continue;
         content.push_back(word);
         word.clear();
     }

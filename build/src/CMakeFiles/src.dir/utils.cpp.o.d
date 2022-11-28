@@ -1,6 +1,6 @@
 src/CMakeFiles/src.dir/utils.cpp.o: \
-  /workspaces/cs225/final_project/cs225-final-project/src/utils.cpp \
-  /workspaces/cs225/final_project/cs225-final-project/src/utils.h \
+  /workspaces/cs225/final_project/src/utils.cpp \
+  /workspaces/cs225/final_project/src/utils.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/utility \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

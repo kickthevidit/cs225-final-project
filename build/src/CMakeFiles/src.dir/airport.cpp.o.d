@@ -1,6 +1,6 @@
 src/CMakeFiles/src.dir/airport.cpp.o: \
-  /workspaces/cs225/final_project/cs225-final-project/src/airport.cpp \
-  /workspaces/cs225/final_project/cs225-final-project/src/airport.h \
+  /workspaces/cs225/final_project/src/airport.cpp \
+  /workspaces/cs225/final_project/src/airport.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/string \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

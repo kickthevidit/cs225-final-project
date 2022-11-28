@@ -4,15 +4,12 @@
 #include <iostream>
 #include <map>
 
-class Airport {
-public:
-    Airport(int id, std::string name, std::string iata, double latitude, double longitude);
-
-    double long() const { return longitude; }
-    double lat() const { return latitude; }
+struct Airport {
+    Airport(int adj_idx, int id, std::string name, std::string iata, double latitude, double longitude);
 
     friend std::ostream& operator<<(std::ostream& os, const Airport& ap);
-private:
+
+    int adj_idx; // index in adjacency list
     int id;
     std::string name;
     std::string iata;
