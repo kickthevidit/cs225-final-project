@@ -102,5 +102,4 @@ std::unordered_map<std::string, std::vector<std::string>> genMap(const V2D airpo
         }
     }
     return map;
-
 }
