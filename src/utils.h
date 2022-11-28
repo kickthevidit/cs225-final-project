@@ -61,7 +61,6 @@ typedef std::vector<std::vector<std::string>> V2D;
 
 V2D fileToV2D(const std::string& filename);
 
-<<<<<<< HEAD
 std::unordered_map<std::string, std::vector<std::string>> genMap(const V2D airports, const V2D routes);
 
 
@@ -78,6 +77,3 @@ double CalculateDist(double long1, double lat1, double long2, double lat2);
 void PrintAdjMatrix(const AdjMatrix &adj, unsigned range = 10);
 
 void PrintAdjMatrix(const AdjMatrix &adj, std::string file_name = "adjacency-matrix.txt", unsigned range = 10);
-=======
-//std::unordered_map<std::string, std::vector<std::string>> genMap(const V2D airports, const V2D routes);
->>>>>>> 4349286063767d6a021a6e30818b3754e6c7c454
