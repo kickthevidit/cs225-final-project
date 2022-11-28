@@ -1,7 +1,8 @@
 #pragma once
 
+#include "airport.h"
 #include <vector>
 
-#include "airport.h"
+using namespace std;
 
-bool BFS(const int start, const int end, const std::vector<std::vector<double>>& matrix);
+bool BFS(const int start, const int end, const vector<vector<double>>& matrix);

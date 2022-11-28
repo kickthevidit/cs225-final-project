@@ -9,13 +9,13 @@ bool BFS(const int start, const int end, const vector<vector<double>>& matrix) {
     if (start == end) {
         return true;
     }
-
     set<int> travelled;
     queue<int> check;
     check.emplace(start);
 
     while (!check.empty()) {
         int front = check.front();
+        check.pop();
         if (front == end) {
             return true;
         }
