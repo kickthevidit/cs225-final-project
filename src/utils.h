@@ -51,4 +51,4 @@ typedef std::vector<std::vector<std::string>> V2D;
 
 V2D fileToV2D(const std::string& filename);
 
-std::unordered_map<std::string, std::vector<std::string>> genMap(const V2D airports, const V2D routes);
+//std::unordered_map<std::string, std::vector<std::string>> genMap(const V2D airports, const V2D routes);
