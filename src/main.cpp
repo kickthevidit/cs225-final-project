@@ -6,9 +6,9 @@
 #include <algorithm>
 
 int main() {
-    std::vector<Airport> airports = loadAirports("../data/airports.csv");
+    // std::vector<Airport> airports = loadAirports("../data/airports.csv");
 
-    std::cout << airports.at(230) << std::endl;
+    // std::cout << airports.at(230) << std::endl;
 
     // auto vec = parse(line, '\n');
 
