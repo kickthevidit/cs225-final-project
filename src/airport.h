@@ -17,4 +17,3 @@ private:
     double longitude;
     std::map<int, int> dest; 
 };
-
