@@ -5,6 +5,7 @@
 #include <limits>
 #include <cstdlib>
 #include <list>
+#include <fstream>
 
 using std::isdigit;
 using std::list;
@@ -23,22 +24,6 @@ double process_numeric(string num) {
 	return (check_numeric(num)) ? stod(num): -1 * std::numeric_limits<double>::max();
 }
 
-// void processAirports(AirportMap &airports, const V2D &airports_dataset, AdjMatrix& adj_matrix) {
-// 	assert(airports.empty());
-
-// 	for (const auto &line : airports_dataset) {
-// 		if (line.empty()) continue;
-// 		for (auto &a : line)
-// 			std::cout << a << ',';
-// 		std::cout << '\n';
-
-// 		airport[(int)process_numeric(line.at(0))] = new Airport((int)process_numeric(line.at(0)), line.at(1), line.at(4), process_numeric(line.at(6)), process_numeric(line.at(7)));
-
-// 		airports.push_back(new Airport((int) process_numeric(line.at(0)), line.at(1), line.at(4), process_numeric(line.at(6)), process_numeric(line.at(7))));
-// 	}
-
-// 	std::cout << "AirportList finished\n";
-// }
 
 double calculateDist(double long1, double lat1, double long2, double lat2) {
 
@@ -61,25 +46,21 @@ void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports
 	int airport_count = 0;
 	for (const auto &line : airports) {
 		if (line.empty() || line.size() != 14) {
-			for (auto &a : line) std::cout << a << ',';
-			std::cout << '\n';
+			// for (auto &a : line) std::cout << a << "|,|";
+			// std::cout << '\n';
 			continue;
 		}
-
-		// for (auto &a : line)
-		// 	std::cout << a << ',';
-		// std::cout << '\n';
 
 		int id = (int) process_numeric(line.at(0));
 
 		Airport *temp = new Airport(airport_count++, id, line.at(1), line.at(4), process_numeric(line.at(6)), process_numeric(line.at(7)));
 
-		std::cout << "Id: " << id << '\n';
+		// std::cout << "Id: " << id << '\n';
 
 		airport_map[id] = temp;
 	}
 
-	std::cout << "Number of Airports: " << airport_count << '\n';
+	// std::cout << "Number of Airports: " << airport_count << '\n';
 
 	adj = AdjMatrix(airport_count, vector<double>(airport_count, -1.));
 
@@ -91,20 +72,56 @@ void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports
 		unsigned source_id = stoi(line.at(3));
 		unsigned dest_id = stoi(line.at(5));
 
-		std::cout << "Source: " << source_id << '\n';
-		std::cout << "Destination: " << dest_id << '\n';
-
-		// std::cout << airport_map[source_id] << ',' << airport_map[dest_id] << '\n';
+		// std::cout << "Source: " << source_id << '\n';
+		// std::cout << "Destination: " << dest_id << '\n';
 
 		try {
-			double dist = calculateDist(airport_map.at(source_id)->longitude, airport_map.at(source_id)->latitude, airport_map.at(dest_id)->longitude, airport_map.at(dest_id)->latitude);
-		} catch (const std::out_of_range e) {
-			for (auto &a : line)
-				std::cout << a << ',';
-			std::cout << '\n';
-			return;
-		}
 
-		// adj.at(airport_map.at(source_id).adj_idx).at(airport_map.at(dest_id).adj_idx) = dist;
+			auto *a1 = airport_map.at(source_id);
+			auto *a2 = airport_map.at(dest_id);
+
+			// std::cout << a1->longitude << ',' << a1->latitude << '\n';
+			// std::cout << a2->longitude << ',' << a2->latitude << '\n';
+
+			double dist = calculateDist(airport_map.at(source_id)->longitude, airport_map.at(source_id)->latitude, airport_map.at(dest_id)->longitude, airport_map.at(dest_id)->latitude);
+
+			adj.at(airport_map.at(source_id)->adj_idx).at(airport_map.at(dest_id)->adj_idx) = dist;
+
+		} catch (const std::out_of_range e) {
+			// for (auto &a : line)
+			// 	std::cout << a << "|,|";
+			// std::cout << '\n';
+			/*
+				Ignore the airports causing an error. The issue is that some airports have commas in their names, to represent their cities which is being processed wrong by the csv parser.
+
+				So for now we are ignoring these airports and once the csv parsing functions are rewritten we can remove this try catch block and include the ignored airports.
+
+				TODO: rewrite csv parser to use content inside quotations and then remove try-catch
+			*/
+			continue;
+		}
+	}
+}
+
+
+void PrintAdjMatrix(const AdjMatrix& adj, unsigned range) {
+	for (unsigned y = 0; y < adj.size() && y < range; ++y) {
+		for (unsigned x = 0; x < adj.size() && x < range; ++x) {
+			std::cout << adj.at(y).at(x) << '\t';
+		}
+		std::cout << '\n';
+	}
+}
+
+void PrintAdjMatrix(const AdjMatrix &adj, std::string file_name, unsigned range) {
+	std::ofstream ofs(file_name, std::ofstream::app);
+
+	if (ofs.is_open()) {
+		for (unsigned y = 0; y < adj.size() && y < range; ++y) {
+			for (unsigned x = 0; x < adj.size() && x < range; ++x) {
+				ofs << adj.at(y).at(x) << '\t';
+			}
+			ofs << '\n';
+		}
 	}
 }

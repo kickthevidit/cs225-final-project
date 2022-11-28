@@ -23,7 +23,7 @@ int main() {
 
     createDatasets(airport_map, adj, airports, routes);
 
-
+    PrintAdjMatrix(adj, "adjacency-matrix-100.txt" ,100);
 
     // std::ifstream file("../data/airport.csv");
 
