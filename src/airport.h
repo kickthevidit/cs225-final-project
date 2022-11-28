@@ -6,16 +6,14 @@
 
 class Airport {
 public:
-    Airport();
-    Airport(std::string id, std::string name, std::string iata, double latitude, double longitude);
+    Airport(int id, std::string name, std::string iata, double latitude, double longitude);
     
     friend std::ostream& operator<<(std::ostream& os, const Airport& ap);
 private:
-    std::string id;
+    int id;
     std::string name;
     std::string iata;
     double latitude;
     double longitude;
     std::map<int, int> dest; 
 };
-
