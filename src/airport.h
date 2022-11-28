@@ -7,7 +7,10 @@
 class Airport {
 public:
     Airport(int id, std::string name, std::string iata, double latitude, double longitude);
-    
+
+    double long() const { return longitude; }
+    double lat() const { return latitude; }
+
     friend std::ostream& operator<<(std::ostream& os, const Airport& ap);
 private:
     int id;
@@ -17,4 +20,5 @@ private:
     double longitude;
     std::map<int, int> dest; 
 };
+
 

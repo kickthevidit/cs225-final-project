@@ -47,8 +47,12 @@ std::string Trim(const std::string & str);
  */
 int SplitString(const std::string & str1, char sep, std::vector<std::string> &fields);
 
-typedef std::vector<std::vector<std::string>> V2D;
-
 V2D fileToV2D(const std::string& filename);
 
+typedef std::vector<std::vector<std::string>> V2D;
+
 std::unordered_map<std::string, std::vector<std::string>> genMap(const V2D airports, const V2D routes);
+
+
+
+ma
