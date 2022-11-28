@@ -13,7 +13,18 @@ void ProcessDataset(AirportList &airports, const V2D &airports_dataset) {
 	}
 }
 
-double CalculateDist(double long1, double lat1, double long2, double lat2) { return 0; }
+double CalculateDist(double long1, double lat1, double long2, double lat2) {
+
+	double lonDiff = long2 - long1;
+    double latDiff = lat2 - lat1;
+    
+    //using Haversine Formula, R is radious of earth in KM
+    long double ans = pow(sin(latDiff / 2), 2) +cos(lat1) * cos(lat2) * pow(sin(lonDiff / 2), 2);
+    ans = 2 * asin(sqrt(ans));
+    double R = 6371;
+    ans *= R;
+    return ans; 
+}
 
 AdjMatrix ProcessAdjacencyMatrix(AirportList &airports, const V2D &routes_dataset) {
 	AdjMatrix adj(airports.size(), vector<double>(airports.size(), -1));
