@@ -22,7 +22,17 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG -O0 -gdwarf
 
 set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_CLEAN_FILES)
 
+set(tests_dir ${CMAKE_SOURCE_DIR}/tests)
 set(src_dir ${CMAKE_SOURCE_DIR}/src)
+
+file(GLOB_RECURSE tests_src CONFIGURE_DEPENDS ${tests_dir}/*.cpp)
+
+find_package(Catch2 REQUIRED)
+add_executable(test ${tests_src})
+target_link_libraries(test PRIVATE Catch2::Catch2WithMain src)
+
+include(Catch)
+catch_discover_tests(test)
 
 add_subdirectory(${src_dir})
 
