@@ -69,10 +69,10 @@ TEST_CASE("Large Matrix") {
                       {1,0,1.2,0,8.8,0,0,0}};
 
     REQUIRE(BFS(6,0,test) == true);
+    REQUIRE(BFS(3,6,test) == false);
+    REQUIRE(BFS(6,3,test) == true);
     REQUIRE(BFS(4,7,test) == false);
-    REQUIRE(BFS(7,4,test) == true);
-    REQUIRE(BFS(5,8,test) == false);
-    REQUIRE(BFS(8,5,test) == true);
+    REQUIRE(BFS(4,7,test) == true);
     REQUIRE(BFS(4,5,test) == true);
     REQUIRE(BFS(5,4,test) == true);
 }
