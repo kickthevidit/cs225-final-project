@@ -62,11 +62,6 @@ int SplitString(const std::string & str1, char sep, std::vector<std::string> &fi
     return fields.size();
 }
 
-//Group additions (Own work)
-
-// std::string TrimQuote(const std::string & str){
-
-// }
 /**
  * Function that converts file to two dim string equivalent
 */
@@ -84,8 +79,10 @@ V2D fileToV2D(const std::string& filename){
             word[j] = Trim(word[j]);
         }
         if(word.empty()) continue;
-        content.push_back(word);
-        word.clear();
+		if (filename == "../data/airports.txt") {
+			if (word[3] == "United States" || word[3] == "United Arab Emirates" || word[3] == "United Kingdom") content.push_back(word);
+		} else content.push_back(word);
+		word.clear();
     }
     return content;
 }
@@ -133,38 +130,31 @@ void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports
 
 		Airport *temp = new Airport(airport_count++, id, line.at(1), line.at(4), process_numeric(line.at(6)), process_numeric(line.at(7)));
 
-		// std::cout << "Id: " << id << '\n';
-
 		airport_map[id] = temp;
 	}
 
-	// std::cout << "Number of Airports: " << airport_count << '\n';
-
 	adj = AdjMatrix(airport_count, vector<double>(airport_count, -1.));
+
+	int num_routes = 0;
 
 	for (const auto& line: routes) {
 		if (line.size() != 9) continue;
-		if (!check_numeric(line.at(3)) || !check_numeric(line.at(5)))
-			continue;
+		if (!check_numeric(line.at(3)) || !check_numeric(line.at(5)))continue;
 
 		unsigned source_id = stoi(line.at(3));
 		unsigned dest_id = stoi(line.at(5));
 
-		// std::cout << "Source: " << source_id << '\n';
-		// std::cout << "Destination: " << dest_id << '\n';
-
 		try {
-
 			auto *a1 = airport_map.at(source_id);
 			auto *a2 = airport_map.at(dest_id);
 
-			// std::cout << a1->longitude << ',' << a1->latitude << '\n';
-			// std::cout << a2->longitude << ',' << a2->latitude << '\n';
+			if (!a1 || !a2) continue;
 
 			double dist = calculateDist(airport_map.at(source_id)->longitude, airport_map.at(source_id)->latitude, airport_map.at(dest_id)->longitude, airport_map.at(dest_id)->latitude);
 
 			adj.at(airport_map.at(source_id)->adj_idx).at(airport_map.at(dest_id)->adj_idx) = dist;
 
+			++num_routes;
 		} catch (const std::out_of_range e) {
 			// for (auto &a : line)
 			// 	std::cout << a << "|,|";
@@ -179,8 +169,9 @@ void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports
 			continue;
 		}
 	}
-}
 
+	std::cout << "Proportion = " << num_routes << ',' << airport_count << ',' << num_routes / airport_count << '\n';
+}
 
 void PrintAdjMatrix(const AdjMatrix& adj, unsigned range) {
 	for (unsigned y = 0; y < adj.size() && y < range; ++y) {
