@@ -67,7 +67,6 @@ TEST_CASE("Small Matrix Loop") {
 //                       {0,3.2,0.8,0,0,0,0,0},
 //                       {0,1.7,0,0,11.9,15.6,0,0},
 //                       {1,0,1.2,0,8.8,0,0,0}};
-
 //     REQUIRE(BFS(6,0,test) == true);
 //     REQUIRE(BFS(4,7,test) == false);
 //     REQUIRE(BFS(7,4,test) == true);
