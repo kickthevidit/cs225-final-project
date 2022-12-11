@@ -136,6 +136,7 @@ void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports
 	adj = AdjMatrix(airport_count, vector<double>(airport_count, -1.));
 
 	int num_routes = 0;
+	int count = 0;
 
 	for (const auto& line: routes) {
 		if (line.size() != 9) continue;
@@ -149,6 +150,8 @@ void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports
 			auto *a2 = airport_map.at(dest_id);
 
 			if (!a1 || !a2) continue;
+
+			if (a2->iata == "ATL") count++;
 
 			double dist = calculateDist(airport_map.at(source_id)->longitude, airport_map.at(source_id)->latitude, airport_map.at(dest_id)->longitude, airport_map.at(dest_id)->latitude);
 
@@ -169,7 +172,7 @@ void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports
 			continue;
 		}
 	}
-
+	std::cout << count << std::endl;
 	std::cout << "Proportion = " << num_routes << ',' << airport_count << ',' << num_routes / airport_count << '\n';
 }
 
