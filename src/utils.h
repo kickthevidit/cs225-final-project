@@ -64,7 +64,7 @@ V2D fileToV2D(const std::string& filename);
 
 void ProcessAirports(AirportList &airports, const V2D & airports_dataset);
 
-void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports, const V2D& routes);
+void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapID, AdjMatrix &adj, const V2D &airports, const V2D& routes);
 
 AdjMatrix ProcessAdjacencyMatrix(AirportList &airports, const V2D &routes_dataset);
 
