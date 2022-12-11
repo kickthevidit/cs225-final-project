@@ -121,11 +121,7 @@ void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, A
 
 	int airport_count = 0;
 	for (const auto &line : airports) {
-		if (line.empty() || line.size() != 14) {
-			// for (auto &a : line) std::cout << a << "|,|";
-			// std::cout << '\n';
-			continue;
-		}
+		if (line.empty() || line.size() != 14) continue;
 
 		int id = (int) process_numeric(line.at(0));
 
@@ -140,9 +136,11 @@ void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, A
 
 	int num_routes = 0;
 
+	V2D unused_airports;
+
 	for (const auto& line: routes) {
 		if (line.size() != 9) continue;
-		if (!check_numeric(line.at(3)) || !check_numeric(line.at(5)))continue;
+		if (!check_numeric(line.at(3)) || !check_numeric(line.at(5))) continue;
 
 		unsigned source_id = stoi(line.at(3));
 		unsigned dest_id = stoi(line.at(5));
@@ -159,21 +157,17 @@ void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, A
 
 			++num_routes;
 		} catch (const std::out_of_range e) {
-			// for (auto &a : line)
-			// 	std::cout << a << "|,|";
-			// std::cout << '\n';
-			/*
-				Ignore the airports causing an error. The issue is that some airports have commas in their names, to represent their cities which is being processed wrong by the csv parser.
-
-				So for now we are ignoring these airports and once the csv parsing functions are rewritten we can remove this try catch block and include the ignored airports.
-
-				TODO: rewrite csv parser to use content inside quotations and then remove try-catch
-			*/
+			unused_airports.push_back(line);
 			continue;
 		}
 	}
 
-	std::cout << "Proportion = " << num_routes << ',' << airport_count << ',' << num_routes / airport_count << '\n';
+	for (const auto& a: unused_airports) {
+		for (const auto& e: a) std::cout << e << ' ';
+		std::cout << '\n';
+	}
+
+	std::cout << "Proportion routes to airports = (" << num_routes << ',' << airport_count << ',' << num_routes / airport_count << ')' << '\n';
 }
 
 void PrintAdjMatrix(const AdjMatrix& adj, unsigned range) {
