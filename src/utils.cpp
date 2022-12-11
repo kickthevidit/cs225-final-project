@@ -80,7 +80,8 @@ V2D fileToV2D(const std::string& filename){
         }
         if(word.empty()) continue;
 		if (filename == "../data/airports.txt") {
-			if (word[3] == "United States" || word[3] == "United Arab Emirates" || word[3] == "United Kingdom") content.push_back(word);
+			if (word[3] == "United States" || word[3] == "United Arab Emirates" || word[3] == "United Kingdom") 
+				content.push_back(word);
 		} else content.push_back(word);
 		word.clear();
     }
@@ -115,8 +116,8 @@ double calculateDist(double long1, double lat1, double long2, double lat2) {
 
 
 
-void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports, const V2D &routes) {
-	assert(airport_map.empty() && adj.empty());
+void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, AdjMatrix &adj, const V2D &airports, const V2D& routes) {
+	assert(airport_mapSource.empty() && adj.empty());
 
 	int airport_count = 0;
 	for (const auto &line : airports) {
@@ -128,9 +129,11 @@ void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports
 
 		int id = (int) process_numeric(line.at(0));
 
-		Airport *temp = new Airport(airport_count++, id, line.at(1), line.at(4), process_numeric(line.at(6)), process_numeric(line.at(7)));
+		Airport *temp = new Airport(airport_count, id, line.at(1), line.at(4), process_numeric(line.at(6)), process_numeric(line.at(7)));
 
-		airport_map[id] = temp;
+		airport_mapSource[id] = temp;
+		airport_mapIdx[airport_count] = temp;
+		airport_count++;
 	}
 
 	adj = AdjMatrix(airport_count, vector<double>(airport_count, -1.));
@@ -146,16 +149,14 @@ void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports
 		unsigned dest_id = stoi(line.at(5));
 
 		try {
-			auto *a1 = airport_map.at(source_id);
-			auto *a2 = airport_map.at(dest_id);
+			auto *a1 = airport_mapSource.at(source_id);
+			auto *a2 = airport_mapSource.at(dest_id);
 
 			if (!a1 || !a2) continue;
 
-			if (a2->iata == "ATL") count++;
+			double dist = calculateDist(airport_mapSource.at(source_id)->longitude, airport_mapSource.at(source_id)->latitude, airport_mapSource.at(dest_id)->longitude, airport_mapSource.at(dest_id)->latitude);
 
-			double dist = calculateDist(airport_map.at(source_id)->longitude, airport_map.at(source_id)->latitude, airport_map.at(dest_id)->longitude, airport_map.at(dest_id)->latitude);
-
-			adj.at(airport_map.at(source_id)->adj_idx).at(airport_map.at(dest_id)->adj_idx) = dist;
+			adj.at(airport_mapSource.at(source_id)->adj_idx).at(airport_mapSource.at(dest_id)->adj_idx) = dist;
 
 			++num_routes;
 		} catch (const std::out_of_range e) {

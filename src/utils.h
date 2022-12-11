@@ -69,7 +69,7 @@ std::unordered_map<std::string, std::vector<std::string>> genMap(const V2D airpo
 
 void ProcessAirports(AirportList &airports, const V2D & airports_dataset);
 
-void createDatasets(AirportMap &airport_map, AdjMatrix &adj, const V2D &airports, const V2D& routes);
+void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapID, AdjMatrix &adj, const V2D &airports, const V2D& routes);
 
 AdjMatrix ProcessAdjacencyMatrix(AirportList &airports, const V2D &routes_dataset);
 
