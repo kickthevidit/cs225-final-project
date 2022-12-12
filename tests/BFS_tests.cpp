@@ -9,7 +9,7 @@
 
 typedef std::vector<std::vector<double>> AdjMatrix;
 
-TEST_CASE("Small Matrix") {
+TEST_CASE("Small Matrix", "[BFS]") {
     AdjMatrix test = {{0,1,1,0},
                       {0,0,1,0},
                       {0,0,0,0},
@@ -28,7 +28,7 @@ TEST_CASE("Small Matrix") {
 
 }
 
-TEST_CASE("Small Matrix Undirected") {
+TEST_CASE("Small Matrix Undirected", "[BFS]") {
     AdjMatrix test = {{0,1,0,1},
                       {1,0,1,0},
                       {0,1,0,0},
@@ -45,7 +45,7 @@ TEST_CASE("Small Matrix Undirected") {
     REQUIRE(BFS(3,0,test) == true);
 }
 
-TEST_CASE("Small Matrix Loop") {
+TEST_CASE("Small Matrix Loop", "[BFS]") {
     AdjMatrix test = {{0,1,0,0},
                       {0,0,1,0},
                       {0,0,0,1},
@@ -58,20 +58,21 @@ TEST_CASE("Small Matrix Loop") {
     REQUIRE(BFS(3,1,test) == true);
 }
 
-// TEST_CASE("Large Matrix") {
-//     AdjMatrix test = {{0,0.6,0,0,2.4,0,0,0},
-//                       {7.4,0,0.3,5.8,0,0,0,0},
-//                       {0,0,0,0,8.7,0,0,0},
-//                       {0,0,0,0,0,0,0,0},
-//                       {6.4,0,10.2,0,0,0,0,0},
-//                       {0,3.2,0.8,0,0,0,0,0},
-//                       {0,1.7,0,0,11.9,15.6,0,0},
-//                       {1,0,1.2,0,8.8,0,0,0}};
-//     REQUIRE(BFS(6,0,test) == true);
-//     REQUIRE(BFS(4,7,test) == false);
-//     REQUIRE(BFS(7,4,test) == true);
-//     REQUIRE(BFS(5,8,test) == false);
-//     REQUIRE(BFS(8,5,test) == true);
-//     REQUIRE(BFS(4,5,test) == true);
-//     REQUIRE(BFS(5,4,test) == true);
-// }
+TEST_CASE("Large Matrix", "[BFS]") {
+    AdjMatrix test = {{0,1,1,0,0,0,0,0},
+                      {0,0,1,0,0,1,0,0},
+                      {1,0,0,0,1,0,0,0},
+                      {0,0,0,0,0,1,1,0},
+                      {0,1,0,0,0,0,0,0},
+                      {1,0,0,1,0,0,0,0},
+                      {0,0,1,0,0,0,0,1},
+                      {0,0,0,0,0,0,0,0}};
+
+    REQUIRE(BFS(0,0,test) == true);
+    REQUIRE(BFS(0,7,test) == true);
+    REQUIRE(BFS(4,2,test) == true);
+    REQUIRE(BFS(2,4,test) == true);
+    REQUIRE(BFS(7,0,test) == false);
+    REQUIRE(BFS(4,3,test) == true);
+    REQUIRE(BFS(1,5,test) == true);
+}
