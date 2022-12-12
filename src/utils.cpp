@@ -79,12 +79,9 @@ V2D fileToV2D(const std::string& filename){
             word[j] = Trim(word[j]);
         }
         if(word.empty()) continue;
-		if (filename == "../data/airports.txt") {
-			if (word[3] == "United States" || word[3] == "United Arab Emirates" || word[3] == "United Kingdom") 
-				content.push_back(word);
-		} else content.push_back(word);
+		content.push_back(word);
 		word.clear();
-    }
+	}
     return content;
 }
 
@@ -162,12 +159,13 @@ void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, A
 		}
 	}
 
-	for (const auto& a: unused_airports) {
-		for (const auto& e: a) std::cout << e << ' ';
-		std::cout << '\n';
-	}
+	// std::cout << "Unused routes: \n";
+	// for (const auto &a : unused_airports) {
+	// 	for (const auto& e: a) std::cout << e << ' ';
+	// 	std::cout << '\n';
+	// }
 
-	std::cout << "Proportion routes to airports = (" << num_routes << ',' << airport_count << ',' << num_routes / airport_count << ')' << '\n';
+	// std::cout << "Proportion routes to airports = (" << num_routes << ',' << airport_count << ',' << num_routes / airport_count << ')' << '\n';
 }
 
 void PrintAdjMatrix(const AdjMatrix& adj, unsigned range) {

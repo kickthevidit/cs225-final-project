@@ -10,11 +10,9 @@ PageRank::PageRank(const std::vector<std::vector<double>> &adjMatrix){
     for(unsigned i = 0; i < n; i++){
         double colCount = 0; //count the degree of node. Used for normalizing vector
         for(unsigned j = 0; j < n; j++){
-            if(rankMatrix[i][j] <= 0){ 
-                rankMatrix[i][j] = 0;
- 
-            }
-            else{
+            if(rankMatrix[i][j] <= 0) { 
+                rankMatrix[i][j] = 0; 
+            } else {
                 rankMatrix[i][j] = 1; //replace weight with 1
                 colCount++;
             }
@@ -24,8 +22,7 @@ PageRank::PageRank(const std::vector<std::vector<double>> &adjMatrix){
             for(unsigned j = 0; j < n; j++){
                 rankMatrix[i][j] = 1 / double(n);
             }
-        }
-        else{
+        } else {
             for(unsigned j = 0; j < n; j++){
                 if (rankMatrix[i][j] != 0)
                     rankMatrix[i][j] = rankMatrix[i][j] / colCount;
@@ -48,18 +45,18 @@ std::vector<double> PageRank::_genStationaryVect(){
     do{
         prevVal = vect[0]; //update prev val
         std::vector<double> copyVect = vect;
-        for(unsigned i = 0; i < n; i++){
+        for (unsigned i = 0; i < n; i++) {
             double sum = 0;
-            //matrix vector multiplication
             for(unsigned j = 0; j < n; j++){
                 sum += rankMatrix[j][i] * double(copyVect[j]);
             }
             vect[i] = sum;
         }
-        //check if vect is stationary
-    }   while(!(std::abs(vect[0] - prevVal) < 0.1));
+    }   while(!(std::abs(vect[0] - prevVal) < 0.000001));
     return vect;
 }
+
+
 
 /**
  * Prints sorted vector of Airport ranks
@@ -69,7 +66,6 @@ void PageRank::print_rankVect(const std::map<int, Airport *>& AirportMap){
     std::vector<Airport> rankList;
 
     for(unsigned i = 0; i < 25; i++){
-        //find index of max rank
         int max_index = std::distance(stationaryVect.begin(), std::max_element(stationaryVect.begin(), stationaryVect.end()));
         rankList.push_back(*(AirportMap.at(max_index)));
         std::cout << i+1 << ":" << rankList[i].iata << stationaryVect[max_index]<< std::endl;

@@ -17,22 +17,6 @@ int main(int argc, char* argv[]) {
     vector<vector<string>> airports = fileToV2D("../data/airports.txt");
     vector<vector<string>> routes = fileToV2D("../data/routes.txt");
 
-    cout << "Printing Airports\n";
-    for (unsigned i = 0; i < airports.size(); i++) {
-        for(unsigned j = 0; j < airports[i].size(); j++){
-            cout<<airports[i][j] << ',';
-        }
-        cout<<endl;
-    }
-
-    cout << "Printing Routes\n";
-    for (unsigned i = 0; i < routes.size(); i++) {
-        for(unsigned j = 0; j < routes[i].size(); j++){
-            cout << routes[i][j] << ',';
-        }
-        cout << endl;
-    }
-
     AirportMap airport_map;
     AirportMap airport_mapIdx;
     AdjMatrix adj;
@@ -45,4 +29,22 @@ int main(int argc, char* argv[]) {
     
     rank.print_rankVect(airport_mapIdx);
 
+    //a = [[0,1,0.,1.],[1.,0, 1, 1],[0,0,0,1], [1,1,0,0,]]
+
+    // std::cout << "\nTesting PageRank\n";
+
+    // vector<vector<double>> eg1 = {{0., 1., 0., 1.}, {1., 0., 1., 1.}, {0., 0., 0., 1.}, {1., 1, 0., 0.}};
+    // vector < vector < double >> eg2((int) eg1.size(), vector<double>(eg1[0].size(), 0.));
+    
+    // for (unsigned i = 0; i < eg1.size(); ++i) {
+    //     for (unsigned j = 0; j < eg1[i].size(); ++j) {
+    //         eg2[j][i] = eg1[i][j];
+    //     }
+    // }
+
+    // PageRank rank1(eg1);
+    // auto out = rank1._genStationaryVect();
+
+    // for (const auto& a: out) std::cout << a << ',';
+    // std::cout << '\n';
 }
