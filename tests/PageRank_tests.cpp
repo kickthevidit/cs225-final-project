@@ -6,4 +6,10 @@
 #include "utils.h"
 #include "airport.h"
 #include "algorithms.h"
+#include "PageRank.h"
 
+typedef std::vector<std::vector<double>> AdjMatrix;
+
+TEST_CASE() {
+    
+}

@@ -31,7 +31,7 @@ bool BFS(const int start, const int end, const vector<vector<double>>& matrix) {
 
 void printSolution(vector<int> dist) {
     cout << "Vertex \t Distance from Source" << endl;
-    for (int i = 0; i < sizeof(dist); i++) {
+    for (unsigned int i = 0; i < sizeof(dist); i++) {
         cout << i << " \t\t\t\t" << dist[i] << endl;
     }
 }
@@ -39,7 +39,7 @@ void printSolution(vector<int> dist) {
 int minDistance(vector<int> dist, vector<bool> sptSet) {
     int min = INT8_MAX, min_index;
  
-    for (int v = 0; v < sizeof(dist); v++) {
+    for (unsigned int v = 0; v < sizeof(dist); v++) {
         if (sptSet[v] == false && dist[v] <= min) {
             min = dist[v], min_index = v;
         }
