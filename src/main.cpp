@@ -1,4 +1,5 @@
 #include "airport.h"
+#include "algorithms.h"
 #include "utils.h"
 #include "PageRank.h"
 // #include "functions.h"
@@ -42,9 +43,13 @@ int main(int argc, char* argv[]) {
     createDatasets(airport_map, airport_mapIdx, adj, airports, routes);
 
     //PrintAdjMatrix(adj, "adjacency-matrix-100.txt" ,100);
+    std::cout << airport_map.at(3682)->iata << "|" << airport_map.at(3830)->iata << std::endl;
+    std::vector<int> path = dijkstra(adj, airport_map.at(3682)->adj_idx, airport_map.at(3830)->adj_idx);
+    for (int i : path) std::cout << airport_mapIdx.at(i)->iata << "->";
+    std::cout << std::endl;
 
-    PageRank rank(adj);
+    //PageRank rank(adj);
     
-    rank.print_rankVect(airport_mapIdx);
+    //rank.print_rankVect(airport_mapIdx);
 
 }

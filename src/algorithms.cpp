@@ -56,7 +56,10 @@ void makePath(const vector<vector<double>>& matrix, const vector<int> parents, c
 }
 
 vector<int> dijkstra(const vector<vector<double>>& matrix, const int source, const int dest) {
+    if (source == dest) { return {source}; }
+
     int s = matrix.at(0).size();
+    std::cout << "Size: " << s << std::endl;
     vector<int> dist(s);
     vector<bool> sptSet(s);
 
@@ -71,28 +74,33 @@ vector<int> dijkstra(const vector<vector<double>>& matrix, const int source, con
     parents.at(source) = -1;
 
     for (int i = 1; i < s; i++) {
-
+        //std::cout << "here" << std::endl;
         int nearestVertex = -1;
         int shortestDistance = INT8_MAX;
         for (int vertexIndex = 0; vertexIndex < s; vertexIndex++) {
             if (!sptSet[vertexIndex] && dist[vertexIndex] < shortestDistance) {
                 nearestVertex = vertexIndex;
-                shortestDistance = sptSet[vertexIndex];
+                shortestDistance = dist[vertexIndex];
             }
         }
- 
+
+        if (nearestVertex == -1) {
+            //std::cout << "here" << std::endl;
+            return {};
+        }
+
         sptSet[nearestVertex] = true;
  
         for (int vertexIndex = 0; vertexIndex < s; vertexIndex++) {
             int edgeDistance = matrix[nearestVertex][vertexIndex];
  
             if (edgeDistance > 0 && ((shortestDistance + edgeDistance) < dist[vertexIndex])) {
+                std::cout << vertexIndex << "|" << shortestDistance + edgeDistance << std::endl;
                 parents[vertexIndex] = nearestVertex;
                 dist[vertexIndex] = shortestDistance + edgeDistance;
             }
         }
     }
-
     vector<int> path;
     makePath(matrix, parents, dest, path);
     return path;
