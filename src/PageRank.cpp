@@ -44,7 +44,8 @@ std::vector<double> PageRank::_genStationaryVect(){
     for(unsigned int i = 0; i < n; i++){
         vect[i] = 1.0/n;
     }
-    double prevVal = 0;
+    double prevVal;
+    int count = 0;
     do{
         prevVal = vect[0]; //update prev val
         std::vector<double> copyVect = vect;
@@ -57,14 +58,16 @@ std::vector<double> PageRank::_genStationaryVect(){
             vect[i] = sum;
         }
         //check if vect is stationary
-    }   while(!(std::abs(vect[0] - prevVal) < 0.1));
+        count++;
+        std::cout << count << "|" << std::abs(vect[0] - prevVal) << std::endl;
+    } while(!(std::abs(vect[0] - prevVal) < 1.0 / n));
     return vect;
 }
 
 /**
  * Prints sorted vector of Airport ranks
 */
-void PageRank::print_rankVect(const std::map<int, Airport *>& AirportMap){
+void PageRank::print_rankVect(const std::map<int, Airport*>& AirportMap){
     std::vector<double> stationaryVect = _genStationaryVect();
     std::vector<Airport> rankList;
 

@@ -29,7 +29,3 @@ bool BFS(const int start, const int end, const vector<vector<double>>& matrix) {
     return false;
 }
 
-
-void shortestPath() { // Dijkstra's
-    
-}
