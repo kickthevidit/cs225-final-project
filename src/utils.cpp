@@ -161,7 +161,7 @@ double calculateDist(double long1, double lat1, double long2, double lat2) {
     return ans; 
 }
 
-void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, AdjMatrix &adj, const V2D &airports, const V2D& routes) {
+void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, CodeToNodeMap& nodeMap ,AdjMatrix &adj, const V2D &airports, const V2D& routes) {
 	/**
 	 * Processing our datasets from 2d vector form to an adjacency matrix and a map with key-value pairs IATA number-Airport.
 	*/
@@ -175,9 +175,11 @@ void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, A
 		if (line.empty() || line.size() != 14) continue;
 
 		int id = (int) stringToNegativeDouble(line.at(0));
+		string iata = line.at(4);
 
-		Airport *temp = new Airport(airport_count, id, line.at(1), line.at(4), stringToNegativeDouble(line.at(6)), stringToNegativeDouble(line.at(7)));
+		Airport *temp = new Airport(airport_count, id, line.at(1), iata, stringToNegativeDouble(line.at(6)), stringToNegativeDouble(line.at(7)));
 
+		nodeMap[iata] = id;
 		airport_mapSource[id] = temp;
 		airport_mapIdx[airport_count] = temp;
 		airport_count++;

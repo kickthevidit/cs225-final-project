@@ -19,6 +19,7 @@
 typedef std::vector<std::vector<double>> AdjMatrix;
 typedef std::list<Airport*> AirportList;
 typedef std::map<int, Airport *> AirportMap;
+typedef std::map<std::string, int> CodeToNodeMap;
 typedef std::vector<std::vector<std::string>> V2D;
 
 /**
@@ -67,7 +68,7 @@ V2D fileToV2D(const std::string& filename);
 /**
  * Processing our datasets from 2d vector form to an adjacency matrix and a map with key-value pairs IATA number-Airport.
 */
-void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapID, AdjMatrix &adj, const V2D &airports, const V2D& routes);
+void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapID, CodeToNodeMap& nodeMap, AdjMatrix &adj, const V2D &airports, const V2D& routes);
 
 /**
 * Input: latitude-longitude of 2 locations
