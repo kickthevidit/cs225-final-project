@@ -3283,7 +3283,7 @@
 3481,"Pope Field","Fort Bragg","United States","POB","KPOB",35.1708984375,-79.014503479004,217,-5,"A","America/New_York","airport","OurAirports"
 3482,"Dalhart Municipal Airport","Dalhart","United States","DHT","KDHT",36.0225982666,-102.54699707,3991,-6,"A","America/Chicago","airport","OurAirports"
 3483,"DLF Airport","Del Rio","United States","DLF","KDLF",29.359501,-100.778002,1082,-6,"A","America/Chicago","airport","OurAirports"
-3484,"Los Angeles International Airport","Los Angeles","United States","LAX","KLAX",33.94250107,-118.4079971,125,-8,"A","America/Los_Angeles","airport","OurAirports"
+3484,"Los Angeles International Airport","Los Angeles","United States","w","LAX",33.94250107,-118.4079971,125,-8,"A","America/Los_Angeles","airport","OurAirports"
 3485,"Anniston Regional Airport","Anniston","United States","ANB","KANB",33.5882,-85.8581,612,-6,"A","America/Chicago","airport","OurAirports"
 3486,"Cleveland Hopkins International Airport","Cleveland","United States","CLE","KCLE",41.4117012024,-81.8498001099,791,-5,"A","America/New_York","airport","OurAirports"
 3487,"Dover Air Force Base","Dover","United States","DOV","KDOV",39.12950134,-75.46600342,24,-5,"A","America/New_York","airport","OurAirports"

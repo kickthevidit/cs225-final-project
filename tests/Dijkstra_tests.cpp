@@ -71,7 +71,7 @@ TEST_CASE("Undirected weighted matrix", "[dijkstra]") {
     Path e42 = {4, 1, 0, 2};
     Path e43 = {4, 1, 3};
 
-    REQUIRE(dijkstra(test, 4, 2) == e42); // doesnt work
+    REQUIRE(dijkstra(test, 4, 2) == e42); 
     REQUIRE(dijkstra(test, 2, 0) == e20);
     REQUIRE(dijkstra(test, 2, 1) == e21);
     REQUIRE(dijkstra(test, 2, 2) == e22);
@@ -101,7 +101,7 @@ TEST_CASE("Directed weighted matrix", "[dijkstra]") {
     REQUIRE(dijkstra(test, 0, 2) == e02);
     REQUIRE(dijkstra(test, 0, 4) == e04);
     REQUIRE(dijkstra(test, 1, 0) == e10);
-    REQUIRE(dijkstra(test, 2, 1) == e21); // doesnt work
+    REQUIRE(dijkstra(test, 2, 1) == e21); 
     REQUIRE(dijkstra(test, 3, 5) == e35);
     REQUIRE(dijkstra(test, 4, 2) == e42);
     REQUIRE(dijkstra(test, 5, 5) == e55);

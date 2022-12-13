@@ -43,8 +43,17 @@ int main(int argc, char* argv[]) {
     createDatasets(airport_map, airport_mapIdx, adj, airports, routes);
 
     //PrintAdjMatrix(adj, "adjacency-matrix-100.txt" ,100);
-    std::cout << airport_map.at(3682)->iata << "|" << airport_map.at(3830)->iata << std::endl;
-    std::vector<int> path = dijkstra(adj, airport_map.at(3682)->adj_idx, airport_map.at(3830)->adj_idx);
+    // int count = 0;
+    // for (unsigned int i = 0; i < adj.at(airport_map.at(4049)->adj_idx).size(); i++) {
+    //     if (adj.at(airport_map.at(4049)->adj_idx).at(i) > 0) {
+    //         std::cout << airport_mapIdx.at(i)->iata << std::endl;
+    //         count++;
+    //     }
+    // }
+    // std::cout << count << std::endl;
+    std::cout << airport_map.at(4049)->iata << "|" << airport_map.at(507)->iata << std::endl;
+
+    std::vector<int> path = dijkstra(adj, airport_map.at(4049)->adj_idx, airport_map.at(507)->adj_idx);
     for (int i : path) std::cout << airport_mapIdx.at(i)->iata << "->";
     std::cout << std::endl;
 

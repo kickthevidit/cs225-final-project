@@ -2,6 +2,7 @@
 #include <vector>
 #include <set>
 #include <queue>
+#include <limits>
 
 using namespace std;
 
@@ -59,12 +60,11 @@ vector<int> dijkstra(const vector<vector<double>>& matrix, const int source, con
     if (source == dest) { return {source}; }
 
     int s = matrix.at(0).size();
-    std::cout << "Size: " << s << std::endl;
-    vector<int> dist(s);
+    vector<double> dist(s);
     vector<bool> sptSet(s);
 
     for (int i = 0; i < s; i++) {
-        dist.at(i) = (INT8_MAX);
+        dist.at(i) = (INT32_MAX);
         sptSet.at(i) = (false);
     }
     dist[source] = 0;
@@ -73,19 +73,22 @@ vector<int> dijkstra(const vector<vector<double>>& matrix, const int source, con
 
     parents.at(source) = -1;
 
+    int count = 0;
     for (int i = 1; i < s; i++) {
-        //std::cout << "here" << std::endl;
+        
         int nearestVertex = -1;
-        int shortestDistance = INT8_MAX;
+        int shortestDistance = INT32_MAX;
         for (int vertexIndex = 0; vertexIndex < s; vertexIndex++) {
-            if (!sptSet[vertexIndex] && dist[vertexIndex] < shortestDistance) {
+            //std::cout << !sptSet[vertexIndex] << "|" << dist[vertexIndex] << "|" << shortestDistance << std::endl;
+            if (!sptSet[vertexIndex] && dist[vertexIndex] <= shortestDistance) {
                 nearestVertex = vertexIndex;
                 shortestDistance = dist[vertexIndex];
             }
         }
-
+        // std::cout << ++count << std::endl;
+        // std::cout << nearestVertex << std::endl;
         if (nearestVertex == -1) {
-            //std::cout << "here" << std::endl;
+            std::cout << "here" << std::endl;
             return {};
         }
 
@@ -95,7 +98,7 @@ vector<int> dijkstra(const vector<vector<double>>& matrix, const int source, con
             int edgeDistance = matrix[nearestVertex][vertexIndex];
  
             if (edgeDistance > 0 && ((shortestDistance + edgeDistance) < dist[vertexIndex])) {
-                std::cout << vertexIndex << "|" << shortestDistance + edgeDistance << std::endl;
+                //std::cout << vertexIndex << "|" << shortestDistance + edgeDistance << std::endl;
                 parents[vertexIndex] = nearestVertex;
                 dist[vertexIndex] = shortestDistance + edgeDistance;
             }
