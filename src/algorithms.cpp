@@ -6,6 +6,8 @@
 
 using namespace std;
 
+typedef std::pair<double, int> Pair;
+
 bool BFS(const int start, const int end, const vector<vector<double>>& matrix) {
     // edge cases
     if (start == end) {
@@ -42,47 +44,43 @@ void makePath(const vector<vector<double>>& matrix, const vector<int> parents, c
 vector<int> dijkstra(const vector<vector<double>>& matrix, const int source, const int dest) {
     if (source == dest) { return {source}; }
 
-    int s = matrix.at(0).size();
-    vector<double> dist(s);
-    vector<bool> sptSet(s);
+    int size = matrix.at(0).size();
+    vector<double> dist(size);
+    vector<bool> sptSet(size);
+    vector<int> parents(size);
+    parents.at(source) = -1;
+    parents.at(dest) = -1;
 
-    for (int i = 0; i < s; i++) {
-        dist.at(i) = INT32_MAX;
-        sptSet.at(i) = (false);
+    for (int i = 0; i < size; i++) {
+        dist.at(i) = numeric_limits<double>::infinity();
+        sptSet.at(i) = false;
     }
     dist[source] = 0;
 
-    vector<int> parents(s);
+    priority_queue<Pair, vector<Pair>, greater<Pair>> queue;
+    queue.push(std::make_pair(0, source));
+    
+    while (!queue.empty()) {
+        Pair curr = queue.top();
+        queue.pop();
 
-    parents.at(source) = -1;
+        double d = curr.first;
+        int ind = curr.second;
+        for (int i = 0; i < size; i++) {
 
-    int count = 0;
-    for (int i = 1; i < s; i++) {
-        
-        int nearestVertex = -1;
-        double shortestDistance = INT32_MAX;
-        for (int vertexIndex = 0; vertexIndex < s; vertexIndex++) {
-            if (!sptSet[vertexIndex] && (dist[vertexIndex] < shortestDistance || shortestDistance == INT32_MAX)) {
-                nearestVertex = vertexIndex;
-                shortestDistance = dist[vertexIndex];
+            if (i == ind || sptSet.at(i) || matrix.at(ind).at(i) <= 0) continue;
+
+            if (dist.at(i) > d + matrix.at(ind).at(i)) {
+                dist.at(i) = d + matrix.at(ind).at(i);
+                parents.at(i) = ind;
+                queue.push(std::make_pair(d + matrix.at(ind).at(i), i));
             }
         }
-        if (nearestVertex == -1) {
-            return {};
-        }
-
-        sptSet[nearestVertex] = true;
- 
-        for (int vertexIndex = 0; vertexIndex < s; vertexIndex++) {
-            int edgeDistance = matrix[nearestVertex][vertexIndex];
- 
-            if (edgeDistance > 0 && ((shortestDistance + edgeDistance) < dist[vertexIndex])) {
-                std::cout << vertexIndex << "|" << shortestDistance + edgeDistance << std::endl;
-                parents[vertexIndex] = nearestVertex;
-                dist[vertexIndex] = shortestDistance + edgeDistance;
-            }
-        }
+        sptSet.at(ind) = true;
     }
+
+    if (parents.at(dest) == -1) return {};
+
     vector<int> path;
     makePath(matrix, parents, dest, path);
     return path;
