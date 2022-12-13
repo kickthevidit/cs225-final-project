@@ -80,7 +80,7 @@ V2D fileToV2D(const std::string& filename){
         }
         if(word.empty()) continue;
 		if (filename == "../data/airports.txt") {
-			if (word[3] == "United States" || word[3] == "United Arab Emirates" || word[3] == "United Kingdom") 
+			if (word[3] == "United States") 
 				content.push_back(word);
 		} else content.push_back(word);
 		word.clear();
