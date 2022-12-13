@@ -28,3 +28,7 @@ Test 2 Image (zero vectors included):
 "https://user-images.githubusercontent.com/112449185/207220419-995feb38-90ee-442a-a9a2-1e2f04d90c01.png"
 
 Possible improvements: Decreasing sparsity of matrix will help keep constant minimal
+
+# Leading Questions
+Our project adequately addressed our guiding questions. For the first question, we developed a method using Dijkstra's to find the most optimal route to travel between two airports with the lowest distance travelled. 
+In regards to our second question, we developed a Page Rank function to rank airports
