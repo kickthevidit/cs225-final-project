@@ -8,7 +8,7 @@ using namespace std;
 
 /**
  * Conduct Breadth First Search on the graph adjacency matrix 
- * to find a path between start and end nodes.
+ * to determine whether there is a path between start and end nodes
 */
 bool BFS(const int start, const int end, const vector<vector<double>>& matrix);
 
