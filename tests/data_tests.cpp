@@ -12,7 +12,7 @@
 
 typedef std::vector<std::vector<std::string>> V2D;
 
-TEST_CASE("file_to_V2D Public Simple Small Test 1", "[weight=5]") {
+TEST_CASE("file_to_V2D Public Simple Small Test 1") {
     V2D data = fileToV2D("../data/smallTest.txt");
 
     const V2D expected_data = {{"1","Goroka Airport","Goroka","Papua New Guinea","GKA","AYGA","-6.081689834590001","145.391998291","5282","10","U","Pacific/Port_Moresby","airport","OurAirports"},\

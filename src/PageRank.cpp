@@ -8,24 +8,24 @@ PageRank::PageRank(const std::vector<std::vector<double>> &adjMatrix){
     rankMatrix = adjMatrix;
     n = rankMatrix.size();
     for(unsigned i = 0; i < n; i++){
-        double colCount = 0; //count the degree of node. Used for normalizing vector
+        double connectionCount = 0; //count the degree of node. I.E summing row
         for(unsigned j = 0; j < n; j++){
             if(rankMatrix[i][j] <= 0) { 
                 rankMatrix[i][j] = 0; 
             } else {
                 rankMatrix[i][j] = 1; //replace weight with 1
-                colCount++;
+                connectionCount++;
             }
         }
         //Divide by zero case, gets filled with 1/n
-        if(colCount == 0){
+        if(connectionCount == 0){
             for(unsigned j = 0; j < n; j++){
                 rankMatrix[i][j] = 1 / double(n);
             }
         } else {
             for(unsigned j = 0; j < n; j++){
                 if (rankMatrix[i][j] != 0)
-                    rankMatrix[i][j] = rankMatrix[i][j] / colCount;
+                    rankMatrix[i][j] = rankMatrix[i][j] / connectionCount;
             }
         }
     }
@@ -34,12 +34,12 @@ PageRank::PageRank(const std::vector<std::vector<double>> &adjMatrix){
 /**
  * Returns stationary vector of airport ranks via power iteration
 */
-std::vector<double> PageRank::_genStationaryVect(){
+std::vector<double> PageRank::genStationaryVect(){
     std::vector<double> vect(n);
 
     //intialize arbitratry vect
-    for(unsigned int i = 0; i < n; i++){
-        vect[i] = 1.0/n;
+    for(double& val : vect){
+        val = 1/double(n);
     }
     double prevVal = 0;
     do{
@@ -52,6 +52,7 @@ std::vector<double> PageRank::_genStationaryVect(){
             }
             vect[i] = sum;
         }
+    //check if vect is stationary (may need change based on data set size)
     }   while(!(std::abs(vect[0] - prevVal) < 0.000001));
     return vect;
 }
@@ -62,13 +63,13 @@ std::vector<double> PageRank::_genStationaryVect(){
  * Prints sorted vector of Airport ranks
 */
 void PageRank::print_rankVect(const std::map<int, Airport *>& AirportMap){
-    std::vector<double> stationaryVect = _genStationaryVect();
+    std::vector<double> stationaryVect = genStationaryVect();
     std::vector<Airport> rankList;
 
     for(unsigned i = 0; i < 25; i++){
         int max_index = std::distance(stationaryVect.begin(), std::max_element(stationaryVect.begin(), stationaryVect.end()));
         rankList.push_back(*(AirportMap.at(max_index)));
-        std::cout << i+1 << ":" << rankList[i].iata << stationaryVect[max_index]<< std::endl;
+        std::cout << i+1 << ":" << rankList[i].iata << " " << stationaryVect[max_index]<< std::endl;
         stationaryVect[max_index] = -1;
     }
 }
@@ -86,3 +87,7 @@ void PageRank::print_rankMatrix(){
     }
 }
 
+
+std::vector<std::vector<double>> PageRank::getMatrix(){
+    return this->rankMatrix;
+}

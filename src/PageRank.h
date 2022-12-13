@@ -18,9 +18,11 @@ class PageRank{
         void print_rankMatrix();
 
         //Returns statinary vector of the rank of airports
-        std::vector<double> _genStationaryVect();
-    private:
+        std::vector<double> genStationaryVect();
 
+        std::vector<std::vector<double>> getMatrix();
+
+    private:
         std::vector<std::vector<double>> rankMatrix;
         unsigned n;
 };
