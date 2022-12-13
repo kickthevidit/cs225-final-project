@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 
+// Node representation of graph
 struct Airport {
     Airport(int adj_idx, int id, std::string name, std::string iata, double latitude, double longitude);
 
