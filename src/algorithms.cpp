@@ -64,7 +64,7 @@ vector<int> dijkstra(const vector<vector<double>>& matrix, const int source, con
     vector<bool> sptSet(s);
 
     for (int i = 0; i < s; i++) {
-        dist.at(i) = (INT32_MAX);
+        dist.at(i) = INT32_MAX;
         sptSet.at(i) = (false);
     }
     dist[source] = 0;
@@ -77,18 +77,16 @@ vector<int> dijkstra(const vector<vector<double>>& matrix, const int source, con
     for (int i = 1; i < s; i++) {
         
         int nearestVertex = -1;
-        int shortestDistance = INT32_MAX;
+        double shortestDistance = INT32_MAX;
         for (int vertexIndex = 0; vertexIndex < s; vertexIndex++) {
             //std::cout << !sptSet[vertexIndex] << "|" << dist[vertexIndex] << "|" << shortestDistance << std::endl;
-            if (!sptSet[vertexIndex] && dist[vertexIndex] <= shortestDistance) {
+            if (!sptSet[vertexIndex] && (dist[vertexIndex] < shortestDistance || shortestDistance == INT32_MAX)) {
                 nearestVertex = vertexIndex;
                 shortestDistance = dist[vertexIndex];
             }
         }
-        // std::cout << ++count << std::endl;
         // std::cout << nearestVertex << std::endl;
         if (nearestVertex == -1) {
-            std::cout << "here" << std::endl;
             return {};
         }
 
@@ -98,7 +96,7 @@ vector<int> dijkstra(const vector<vector<double>>& matrix, const int source, con
             int edgeDistance = matrix[nearestVertex][vertexIndex];
  
             if (edgeDistance > 0 && ((shortestDistance + edgeDistance) < dist[vertexIndex])) {
-                //std::cout << vertexIndex << "|" << shortestDistance + edgeDistance << std::endl;
+                std::cout << vertexIndex << "|" << shortestDistance + edgeDistance << std::endl;
                 parents[vertexIndex] = nearestVertex;
                 dist[vertexIndex] = shortestDistance + edgeDistance;
             }

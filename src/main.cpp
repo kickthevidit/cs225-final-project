@@ -51,9 +51,11 @@ int main(int argc, char* argv[]) {
     //     }
     // }
     // std::cout << count << std::endl;
-    std::cout << airport_map.at(4049)->iata << "|" << airport_map.at(507)->iata << std::endl;
+    int a1 = 4216;
+    int a2 = 468;
+    std::cout << airport_map.at(a1)->iata << "|" << airport_map.at(a2)->iata << std::endl;
 
-    std::vector<int> path = dijkstra(adj, airport_map.at(4049)->adj_idx, airport_map.at(507)->adj_idx);
+    std::vector<int> path = dijkstra(adj, airport_map.at(a1)->adj_idx, airport_map.at(a2)->adj_idx);
     for (int i : path) std::cout << airport_mapIdx.at(i)->iata << "->";
     std::cout << std::endl;
 
