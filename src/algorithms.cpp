@@ -79,13 +79,11 @@ vector<int> dijkstra(const vector<vector<double>>& matrix, const int source, con
         int nearestVertex = -1;
         double shortestDistance = INT32_MAX;
         for (int vertexIndex = 0; vertexIndex < s; vertexIndex++) {
-            //std::cout << !sptSet[vertexIndex] << "|" << dist[vertexIndex] << "|" << shortestDistance << std::endl;
             if (!sptSet[vertexIndex] && (dist[vertexIndex] < shortestDistance || shortestDistance == INT32_MAX)) {
                 nearestVertex = vertexIndex;
                 shortestDistance = dist[vertexIndex];
             }
         }
-        // std::cout << nearestVertex << std::endl;
         if (nearestVertex == -1) {
             return {};
         }
