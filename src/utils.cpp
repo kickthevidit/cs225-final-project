@@ -209,14 +209,12 @@ void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, A
 			continue;
 		}
 	}
-	std::cout << count << std::endl;
-	std::cout << "Proportion = " << num_routes << ',' << airport_count << ',' << num_routes / airport_count << '\n';
 
 }
 
 void PrintAdjMatrix(const AdjMatrix& adj, unsigned range) {
 	/**
-	 *  Given a 2d vector of adjacency matrix print it out 
+	*  Given a 2d vector of adjacency matrix print it out 
 	*/
 	for (unsigned y = 0; y < adj.size() && y < range; ++y) {
 		for (unsigned x = 0; x < adj.size() && x < range; ++x) {

@@ -19,8 +19,7 @@
 typedef std::vector<std::vector<double>> AdjMatrix;
 typedef std::list<Airport*> AirportList;
 typedef std::map<int, Airport *> AirportMap;
-
-//Library from UIUC CS225 MP schedule 
+typedef std::vector<std::vector<std::string>> V2D;
 
 /**
  * Takes a filename and reads in all the text from the file
@@ -58,23 +57,30 @@ std::string Trim(const std::string & str);
  */
 int SplitString(const std::string & str1, char sep, std::vector<std::string> &fields);
 
-typedef std::vector<std::vector<std::string>> V2D;
-
+/**
+* Input: file path as string
+* Processing: takes content of file and organises it into a 2 dim vector splitting using whitespaces and newline characters
+* Output: a 2d vector
+*/
 V2D fileToV2D(const std::string& filename);
 
-std::unordered_map<std::string, std::vector<std::string>> genMap(const V2D airports, const V2D routes);
-
-
-
-
-void ProcessAirports(AirportList &airports, const V2D & airports_dataset);
-
+/**
+ * Processing our datasets from 2d vector form to an adjacency matrix and a map with key-value pairs IATA number-Airport.
+*/
 void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapID, AdjMatrix &adj, const V2D &airports, const V2D& routes);
 
-AdjMatrix ProcessAdjacencyMatrix(AirportList &airports, const V2D &routes_dataset);
-
+/**
+* Input: latitude-longitude of 2 locations
+* Output: the distance between the two locations using Haversine Formula
+*/
 double CalculateDist(double long1, double lat1, double long2, double lat2);
 
+/**
+*  Given a 2d vector of adjacency matrix print it out 
+*/
 void PrintAdjMatrix(const AdjMatrix &adj, unsigned range = 10);
 
+/**
+*  Write part of an adjacency matrix of size n*n onto a file with specified file path. 
+* */
 void PrintAdjMatrix(const AdjMatrix &adj, std::string file_name = "adjacency-matrix.txt", unsigned range = 10);
