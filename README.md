@@ -47,3 +47,42 @@ To run tests:
 ```
 ## Example Output
 
+```
+Args: MSO,CMI
+Reading Datasets...
+Getting node IDs...
+Creating Adjacency Matrix...
+See Adjacency Matrix in adjacency-matrix-500.txt
+Conducting BFS...
+
+Possible path found
+Conducting Dijkstra's...
+
+Result Path: 548        306     256     513
+Conducting PageRank...
+1:ATL 0.0278308
+2:DEN 0.0266028
+3:ORD 0.0263771
+4:DFW 0.0245205
+5:MSP 0.0210302
+6:DTW 0.0207955
+7:LAS 0.0204485
+8:CLT 0.0194942
+9:IAH 0.0179819
+10:PHL 0.0155464
+11:SLC 0.0152736
+12:LAX 0.0152569
+13:DCA 0.0149785
+14:IAD 0.0139954
+15:PHX 0.0139847
+16:SEA 0.0135744
+17:MCO 0.0134157
+18:EWR 0.0128854
+19:BOS 0.0127987
+20:SFO 0.0127728
+21:BWI 0.012348
+22:MDW 0.0121322
+23:LGA 0.0115348
+24:JFK 0.0112625
+25:TPA 0.0110122
+```
