@@ -17,10 +17,11 @@ using std::string;
 using std::vector;
 
 
-//Library from UIUC CS225 MP schedule 
-
-
 std::string file_to_string(const std::string& filename){
+  /**
+   * Function takes in a filename as string
+   * returns the contents of the file as a string.
+  */
   std::ifstream text(filename);
 
   std::stringstream strStream;
@@ -31,27 +32,56 @@ std::string file_to_string(const std::string& filename){
 }
 
 std::string TrimRight(const std::string & str) {
+	/**
+	 * Input: a string
+	 * Processing: Removes all whitespaces at the end of the string
+	 * Output: a string
+	*/
     std::string tmp = str;
     return tmp.erase(tmp.find_last_not_of(" ") + 1);
 }
 
 std::string TrimLeft(const std::string & str) {
+	/**
+	 * Input: a string
+	 * Processing: Removes all whitespaces at start of the string
+	 * Output: a string
+	*/
     std::string tmp = str;
     return tmp.erase(0, tmp.find_first_not_of(" "));
 }
 
+void removeQuotes(std::string& str) {
+	/**
+	 * Input: a string
+	 * Processing: Removes all quote characters from the start and end of the string
+	 * Output: the string with all quotes removed
+	*/
+	if (str.find('\"') != std::string::npos){
+		str.pop_back();
+		str[0] = ' ';
+	}
+}
+
 std::string Trim(const std::string & str) {
+	/**
+	 * Input: a string
+	 * Processing: Removes all whitespaces from the start and end of the string.
+	 * Output: the string with all whitespaces removed
+	*/
     std::string tmp = str;
     //Removes Double quotes
-    if(tmp.find('\"') != std::string::npos){
-        tmp.pop_back();
-        tmp[0] = ' ';
-    }
-    tmp = TrimLeft(TrimRight(tmp));
+	removeQuotes(tmp);
+	tmp = TrimLeft(TrimRight(tmp));
     return tmp;
 }
 
 int SplitString(const std::string & str1, char sep, std::vector<std::string> &fields) {
+	/**
+	 * Input: string str1, char sep, vector<string>& fields
+	 * Processing: splits the string into different strings when encountering the char and places all split elements into the vector<string>
+	 * Output: the length of fields i.e. the number split elements
+	*/
     std::string str = str1;
     std::string::size_type pos;
     while((pos=str.find(sep)) != std::string::npos) {
@@ -62,10 +92,13 @@ int SplitString(const std::string & str1, char sep, std::vector<std::string> &fi
     return fields.size();
 }
 
-/**
- * Function that converts file to two dim string equivalent
-*/
+
 V2D fileToV2D(const std::string& filename){
+	/**
+	* Input: file path as string
+	* Processing: takes content of file and organises it into a 2 dim vector splitting using whitespaces and newline characters
+	* Output: a 2d vector
+	*/
     V2D content;
     std::string file = file_to_string(filename);
     std::vector<std::string> line;
@@ -89,6 +122,10 @@ V2D fileToV2D(const std::string& filename){
 }
 
 bool check_numeric(string num) {
+	/**
+	 * Input: Takes in a string
+	 * Output: Returns if the string is a valid decimal number
+	*/
 	if (num.empty()) return false;
 
 	unsigned start = (num[0] == '-') ? 0 : -1;
@@ -96,13 +133,23 @@ bool check_numeric(string num) {
 	return isdigit(num[start + 1]);
 }
 
-double process_numeric(string num) {
+double stringToNegativeDouble(string num) {
+	/**
+	 * Input: A string
+	 * Output: If the string is numeric, return the string as a double. Else, return ((double) -1 * INF)
+	*/
+
 	return (check_numeric(num)) ? stod(num): -1 * std::numeric_limits<double>::max();
 }
 
 
 double calculateDist(double long1, double lat1, double long2, double lat2) {
+	/**
+	 * Input: latitude-longitude of 2 locations
+	 * Output: the distance between the two locations using Haversine Formula
+	*/
 
+	// calculate the distance between latitude and longitude
 	double lonDiff = long2 - long1;
     double latDiff = lat2 - lat1;
     
@@ -114,36 +161,36 @@ double calculateDist(double long1, double lat1, double long2, double lat2) {
     return ans; 
 }
 
-
-
 void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, AdjMatrix &adj, const V2D &airports, const V2D& routes) {
+	/**
+	 * Processing our datasets from 2d vector form to an adjacency matrix and a map with key-value pairs IATA number-Airport.
+	*/
+
 	assert(airport_mapSource.empty() && adj.empty());
+
+	// Getting airport data from the airport dataset
 
 	int airport_count = 0;
 	for (const auto &line : airports) {
-		if (line.empty() || line.size() != 14) {
-			// for (auto &a : line) std::cout << a << "|,|";
-			// std::cout << '\n';
-			continue;
-		}
+		if (line.empty() || line.size() != 14) continue;
 
-		int id = (int) process_numeric(line.at(0));
+		int id = (int) stringToNegativeDouble(line.at(0));
 
-		Airport *temp = new Airport(airport_count, id, line.at(1), line.at(4), process_numeric(line.at(6)), process_numeric(line.at(7)));
+		Airport *temp = new Airport(airport_count, id, line.at(1), line.at(4), stringToNegativeDouble(line.at(6)), stringToNegativeDouble(line.at(7)));
 
 		airport_mapSource[id] = temp;
 		airport_mapIdx[airport_count] = temp;
 		airport_count++;
 	}
 
+	// initializing adjacency matrix
 	adj = AdjMatrix(airport_count, vector<double>(airport_count, -1.));
 
-	int num_routes = 0;
-	int count = 0;
-
+	// processing routes
+	V2D unused_airports;
 	for (const auto& line: routes) {
 		if (line.size() != 9) continue;
-		if (!check_numeric(line.at(3)) || !check_numeric(line.at(5)))continue;
+		if (!check_numeric(line.at(3)) || !check_numeric(line.at(5))) continue;
 
 		unsigned source_id = stoi(line.at(3));
 		unsigned dest_id = stoi(line.at(5));
@@ -157,27 +204,20 @@ void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, A
 			double dist = calculateDist(airport_mapSource.at(source_id)->longitude, airport_mapSource.at(source_id)->latitude, airport_mapSource.at(dest_id)->longitude, airport_mapSource.at(dest_id)->latitude);
 
 			adj.at(airport_mapSource.at(source_id)->adj_idx).at(airport_mapSource.at(dest_id)->adj_idx) = dist;
-
-			++num_routes;
 		} catch (const std::out_of_range e) {
-			// for (auto &a : line)
-			// 	std::cout << a << "|,|";
-			// std::cout << '\n';
-			/*
-				Ignore the airports causing an error. The issue is that some airports have commas in their names, to represent their cities which is being processed wrong by the csv parser.
-
-				So for now we are ignoring these airports and once the csv parsing functions are rewritten we can remove this try catch block and include the ignored airports.
-
-				TODO: rewrite csv parser to use content inside quotations and then remove try-catch
-			*/
+			unused_airports.push_back(line);
 			continue;
 		}
 	}
 	std::cout << count << std::endl;
 	std::cout << "Proportion = " << num_routes << ',' << airport_count << ',' << num_routes / airport_count << '\n';
+
 }
 
 void PrintAdjMatrix(const AdjMatrix& adj, unsigned range) {
+	/**
+	 *  Given a 2d vector of adjacency matrix print it out 
+	*/
 	for (unsigned y = 0; y < adj.size() && y < range; ++y) {
 		for (unsigned x = 0; x < adj.size() && x < range; ++x) {
 			std::cout << adj.at(y).at(x) << '\t';
@@ -187,6 +227,10 @@ void PrintAdjMatrix(const AdjMatrix& adj, unsigned range) {
 }
 
 void PrintAdjMatrix(const AdjMatrix &adj, std::string file_name, unsigned range) {
+	/**
+	 *  Write part of an adjacency matrix of size n*n onto a file with specified file path. 
+	 * */
+	
 	std::ofstream ofs(file_name, std::ofstream::app);
 
 	if (ofs.is_open()) {
@@ -198,5 +242,3 @@ void PrintAdjMatrix(const AdjMatrix &adj, std::string file_name, unsigned range)
 		}
 	}
 }
-
-
