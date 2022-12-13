@@ -6,6 +6,7 @@
 using namespace std;
 
 bool BFS(const int start, const int end, const vector<vector<double>>& matrix) {
+    // edge cases
     if (start == end) {
         return true;
     }
@@ -13,10 +14,10 @@ bool BFS(const int start, const int end, const vector<vector<double>>& matrix) {
     queue<int> check;
     check.emplace(start);
 
-    while (!check.empty()) {
+    while (!check.empty()) { // until queue is full
         int front = check.front();
-        check.pop();
-        if (front == end) {
+        check.pop(); // get next neighbor
+        if (front == end) { // if destination is reached
             return true;
         }
         for (unsigned int i = 0; i < matrix.size(); i++) {
@@ -33,7 +34,7 @@ void makePath(const vector<vector<double>>& matrix, const vector<int> parents, c
     if (dest == -1) {
         return;
     }
-    makePath(matrix, parents, parents.at(dest), path);
+    makePath(matrix, parents, parents.at(dest), path); // recursively add next parents from the path
     path.push_back(dest);
 }
 
