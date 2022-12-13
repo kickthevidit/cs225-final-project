@@ -1,6 +1,12 @@
 # CS225 Final Project
 Members: Ryan Forester, Vidit Gautam, Chris Wang, and Braden Nigg
 
+## Deliverables
+
+README.md, Results.md - Github Repository
+
+Video submission - Github Repository, Youtube
+
 ## Project Description
 
 Our project is based on interpreting the [Openflight](https://openflights.org/data.html) Dataset. This data set contains a large amount of data about airports and routes around the world. This led our group to design two primary functions. The first finds the shortest path using Dijkstra's A which given a start and end location will give a path a distance. The second function is a Page Rank function that analyzes the importance of airports and gives a ranking.
