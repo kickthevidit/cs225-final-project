@@ -31,4 +31,4 @@ Possible improvements: Decreasing sparsity of matrix will help keep constant min
 
 # Leading Questions
 Our project adequately addressed our guiding questions. For the first question, we developed a method using Dijkstra's to find the most optimal route to travel between two airports with the lowest distance travelled. 
-In regards to our second question, we developed a Page Rank function to rank airports
+In regards to our second question, we developed a Page Rank function to rank airports analyze the importance of an airport which was guided by airport connectivity.
