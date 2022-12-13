@@ -12,6 +12,11 @@ Possible path found
 Our Dijkstra's was used to find the shortest path between two airports. The function takes in a 2D vector representing our adjacency matrix, and two integers, representing the ID's of the designated start and end airports. The function returns a vector of integers signifying the path of airports to get from the start and end. We use 3 vectors: a vector of doubles (dist) to keep track of the shortest path from the source to each node, a vector of bools (sptSet) to keep track if each node has been visited yet, and another vector of ints (parents) to keep track of the index of the parent of each node in this traversal. We set all the values in dist to be the max integer except the source and similarly all the values in sptSet to be false. From there, we use a queue in a BFS style to traverse the adjacency list and adjust dist and parents as soon as shorter distances from the source to that node have been found. The runtime of Dijkstra's in this case should be O(V*log(V) + E) where V is the number of vertices and E is edges. For testing, we again made model adjacency matrices and saw that given any two inputs, the function would return the shortest path between them or handle extraneous test cases accordingly.
 
 Expected Output:
+```
+Conducting Dijkstra's...
+
+Result Path: MSO       PDX     DFW     CMI
+```
 
 
 
