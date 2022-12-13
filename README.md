@@ -32,7 +32,7 @@ make
 To run program:
 
 ```
-./main <airport1> <airport2>
+./main <airport1_IATA> <airport2_IATA>
 ```
 
 To run tests:
