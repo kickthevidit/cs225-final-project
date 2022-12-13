@@ -44,9 +44,7 @@ std::vector<double> PageRank::genStationaryVect(){
     for(double& val : vect){
         val = 1/double(n);
     }
-
     double prevVal = 0;
-    
     do{
         prevVal = vect[0]; //update prev val
         std::vector<double> copyVect = vect;

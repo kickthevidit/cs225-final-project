@@ -42,6 +42,7 @@ TEST_CASE("Page Rank Test Stationary Vector simple small"){
     }
 }
 
+
 TEST_CASE("Page Rank Test Stationary Vector small 0 vector case"){
     AdjMatrix matrix =  {{0,0,0,0},
                         {1,0,1,1},
@@ -62,13 +63,12 @@ TEST_CASE("Page Rank Test Stationary Vector small 0 vector case"){
     for(unsigned i = 0; i < 4; i++){
         difference[i] = std::abs(exp_stationaryVect[i] - act_stationaryVect[i]);
     }
-    for(const double& val : act_stationaryVect){
-        std::cout << val << " ";
-    }
+
     for(const double& val : difference){
         REQUIRE(val < 0.1);
     }
 }
+
 
 TEST_CASE("Markov Matrix simple small"){
     AdjMatrix matrix =  {{0,1,0,1},

@@ -139,6 +139,7 @@ void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, A
 	adj = AdjMatrix(airport_count, vector<double>(airport_count, -1.));
 
 	int num_routes = 0;
+	int count = 0;
 
 	for (const auto& line: routes) {
 		if (line.size() != 9) continue;
@@ -172,7 +173,7 @@ void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapIdx, A
 			continue;
 		}
 	}
-
+	std::cout << count << std::endl;
 	std::cout << "Proportion = " << num_routes << ',' << airport_count << ',' << num_routes / airport_count << '\n';
 }
 

@@ -62,6 +62,11 @@ typedef std::vector<std::vector<std::string>> V2D;
 
 V2D fileToV2D(const std::string& filename);
 
+std::unordered_map<std::string, std::vector<std::string>> genMap(const V2D airports, const V2D routes);
+
+
+
+
 void ProcessAirports(AirportList &airports, const V2D & airports_dataset);
 
 void createDatasets(AirportMap &airport_mapSource, AirportMap &airport_mapID, AdjMatrix &adj, const V2D &airports, const V2D& routes);
