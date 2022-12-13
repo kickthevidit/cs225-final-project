@@ -2,16 +2,17 @@
 #include "algorithms.h"
 #include "utils.h"
 #include "PageRank.h"
-// #include "functions.h"
 
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
+    std::ofstream ofs("../output/results.txt", std::ofstream::app);
     string start = argv[1];
     string end = argv[2];
 
@@ -21,35 +22,31 @@ int main(int argc, char* argv[]) {
     AirportMap airport_map;
     AirportMap airport_mapIdx;
     AdjMatrix adj;
-    
-    createDatasets(airport_map, airport_mapIdx, adj, airports, routes);
+    CodeToNodeMap nodeMap;
 
-    //PrintAdjMatrix(adj, "adjacency-matrix-100.txt" ,100);
-    std::cout << airport_map.at(3682)->iata << "|" << airport_map.at(3830)->iata << std::endl;
-    std::vector<int> path = dijkstra(adj, airport_map.at(3682)->adj_idx, airport_map.at(3830)->adj_idx);
-    for (int i : path) std::cout << airport_mapIdx.at(i)->iata << "->";
-    std::cout << std::endl;
+    ofs << "Args: " << start << ',' << end << '\n' ;
 
-    //PageRank rank(adj);
-    
-    //rank.print_rankVect(airport_mapIdx);
+    ofs << "Reading Datasets...\n";
+    createDatasets(airport_map, airport_mapIdx, nodeMap, adj, airports, routes);
 
-    //a = [[0,1,0.,1.],[1.,0, 1, 1],[0,0,0,1], [1,1,0,0,]]
+    ofs << "Getting node IDs...\n";
+    int id1 = nodeMap.at(start), id2 = nodeMap.at(end);
 
-    // std::cout << "\nTesting PageRank\n";
+    ofs << "Creating Adjacency Matrix...\n";
+    ofs << "See Adjacency Matrix in adjacency-matrix-500.txt\n";
+    PrintAdjMatrix(adj, "../output/adjacency-matrix-500.txt", 500);
 
-    // vector<vector<double>> eg1 = {{0., 1., 0., 1.}, {1., 0., 1., 1.}, {0., 0., 0., 1.}, {1., 1, 0., 0.}};
-    // vector < vector < double >> eg2((int) eg1.size(), vector<double>(eg1[0].size(), 0.));
-    
-    // for (unsigned i = 0; i < eg1.size(); ++i) {
-    //     for (unsigned j = 0; j < eg1[i].size(); ++j) {
-    //         eg2[j][i] = eg1[i][j];
-    //     }
-    // }
+    ofs << "Conducting BFS...\n";
+    std::cout << '\n';
+    bool out = BFS(id1, id2, adj);
+    ofs << (out) ? "Possible path found\n" :  "Possible path not found\n";
 
-    // PageRank rank1(eg1);
-    // auto out = rank1._genStationaryVect();
+    ofs << "Conducting Disjkstra's...\n";
+    std::cout << '\n';
+    std::vector<int> path = dijkstra(adj, id1, id2);
+    ofs << "Result Path: ";
+    for (auto &a : path) ofs << a << '\t';
+    ofs << '\n';
 
-    // for (const auto& a: out) std::cout << a << ',';
-    // std::cout << '\n';
+
 }
