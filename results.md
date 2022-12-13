@@ -6,7 +6,25 @@ Our Dijkstra's was used to find the shortest path between two airports. The func
 
 
 # Page Rank
-s
+Page Rank is an algorithm used to rank verticies in a graph based on a chosen metric that can written as a probability. In our case we have airports and routes so naturaly Page Rank fits answersing the importance of an airport based on a connectivity rank. To Implement Page Rank we created a 2D adjacency matrix with 1 representing a route between two airports and 0 meaning a route does not exist. From here we uses a Linear Algebra approach to optaining ranks. The first step is normalizing the mastrix so that all entries in row (typically columns) sum to 1. We also accounted for the case of a row summing to zero and chose 1 / number of airports. This step is crucial as the next step involves multiplying our Markov matrix with an arbitray vector until it converges and a zero row will converges to zero. The next step involved creating a sorted vector of ranks and mapping the index to an airport.
 
-# Leading Question: 
-s
+Our results are as following (Top 5 U.S. only):
+```
+1:ATL 0.0278308
+2:DEN 0.0266028
+3:ORD 0.0263771
+4:DFW 0.0245205
+5:MSP 0.0210302
+```
+
+We found our results to match our assumptions very well, however ran into issues when increasing the number of airports. To generate our stationary vector it takes O(V * E) = O(n^2) time on reasonable scales. However, as the number of airports increases our constant becomes more significant and atributes to a worse case runtime of O(n^3). This is cuased from generating our stationary vector as it gains accuracy with more iterations.
+
+To test our Page Rank algorithm we used a Markov Matrix homework from UIUC's MATH 257 to see if the Markov matrix and stationary vector matched our implementation. The code is as follows
+
+Test 1 Image (no zero vectors included):
+https://user-images.githubusercontent.com/112449185/207220395-05ec5c80-101c-4a45-bf9a-d1ba7b8ed3b7.png"
+
+Test 2 Image (zero vectors included):
+"https://user-images.githubusercontent.com/112449185/207220419-995feb38-90ee-442a-a9a2-1e2f04d90c01.png"
+
+Possible improvements: Decreasing sparsity of matrix will help keep constant minimal
